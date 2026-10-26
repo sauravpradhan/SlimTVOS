@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'io.slimtvos'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "io.slimtvos"
+        minSdk 26
+        targetSdk 33
+        versionCode 3
+        versionName "1.2"
+    }
+
+    // Pure Java app: no Kotlin, no AndroidX, no libraries.
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // The font is read straight from the APK, so it must not be compressed.
+    androidResources {
+        noCompress += ["ttf"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            // Signed with the debug key so the release APK installs by adb without extra setup.
+            // For your own signing key, see https://developer.android.com/studio/publish/app-signing
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
