@@ -1,8 +1,7 @@
 # Free My TV: Android Studio project
 
 An Android Studio (Gradle) repackaging of https://github.com/simbasjungles/free-my-tv (MIT license, see LICENSE).
-Code, resources and assets are unchanged. Only the build layout differs: the original builds with `build.sh`
-(aapt2, javac, d8) and has no Gradle files.
+Clock typeface is custom and can be found at /assests/fonts/CSaurav.ttf
 
 ## Build
 1. Install Android Studio (any recent version; it brings JDK 17+). Let it install SDK Platform 34.
