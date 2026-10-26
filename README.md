@@ -12,7 +12,7 @@ The clock uses the custom typeface `CSaurav.ttf`, located at `/assests/fonts/CSa
 
 1. Install Android Studio (any recent version; it brings JDK 17+). Let it install SDK Platform 34.
 2. File > Open > choose this folder. Wait for the Gradle sync (first sync downloads Gradle 8.9 and the Android plugin).
-3. Open `app/src/main/java/io/slimtvos/Config.java` and set your city, region and TMDB key.
+3. (Optional and i like it without TMDB)Open `app/src/main/java/io/slimtvos/Config.java` and set your city, region and TMDB key.
 4. Build > Build Bundle(s) / APK(s) > Build APK(s). The file is `app/build/outputs/apk/debug/app-debug.apk`.
 
 ## Install on the TV (Google TV / Android TV, Android 9+)
