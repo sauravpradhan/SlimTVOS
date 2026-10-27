@@ -1,6 +1,6 @@
 # Free My TV: Android Studio project
 
-An Android Studio (Gradle) repackaging of https://github.com/simbasjungles/free-my-tv (MIT license, see LICENSE with custom UI elements like own clockface and lockscreen 
+An Android Studio (Gradle) repackaging of https://github.com/simbasjungles/free-my-tv (MIT license, see LICENSE with custom UI elements like own clockface(Nothing OS beta 5 inspired) and lockscreen 
 
 ## Preview
 
