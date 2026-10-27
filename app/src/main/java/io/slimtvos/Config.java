@@ -3,7 +3,7 @@ package io.slimtvos;
 /**
  * Your settings. In the original project build.sh generates this file from config.properties;
  * in Android Studio you edit the values here and press Run / Build APK.
- * Most of these can also be changed later on the TV, in Free My TV > Home Settings.
+ * Most of these can also be changed later on the TV, in Slim TV OS > Home Settings.
  */
 final class Config {
     private Config() {}

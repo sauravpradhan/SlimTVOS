@@ -293,7 +293,7 @@ final class HomeApps {
         return shortcut(kind, key, label, symbol);
     }
 
-    /** Free My TV settings, in the corner of the home screen. */
+    /** Slim TV OS settings, in the corner of the home screen. */
     /** The TV's own settings (android.settings.SETTINGS). */
     static Item tvSettings() {
         return shortcut(ANDROID_SETTINGS, "tv-settings", Ui.tr("TV Settings"), "tv_settings");
