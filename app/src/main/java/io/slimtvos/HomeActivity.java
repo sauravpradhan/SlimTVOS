@@ -17,7 +17,7 @@ import android.widget.TextView;
  */
 public class HomeActivity extends Activity {
     /** Opens All Apps (a remote's All Apps button, RemoteKeys). */
-    static final String EXTRA_ALL_APPS = "io.freemytv.ALL_APPS";
+    static final String EXTRA_ALL_APPS = "io.slimtvos.ALL_APPS";
     private HomeView home;
     private int prefsVersion = Prefs.version;   // settings changed while we were away: start over
 

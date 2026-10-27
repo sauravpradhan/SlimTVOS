@@ -517,7 +517,7 @@ final class HomeApps {
         synchronized (HomeApps.class) {
             TILES.keySet().removeIf(k -> k.contains(".") && !seen.contains(k));
         }
-        items.add(special(c, SETTINGS, "freemytv-settings", "Free My TV", "sparkles"));
+        items.add(special(c, SETTINGS, "slimtvos-settings", "SlimTVOS", "sparkles"));
         return items;
     }
 
@@ -1032,7 +1032,7 @@ final class HomeApps {
 
     // MARK: - Cards
 
-    private static synchronized Bitmap appTile(Context c, String key, String pkg, int brand) {
+   /* private static synchronized Bitmap appTile(Context c, String key, String pkg, int brand) {
         String cacheKey = key != null ? key : pkg;
         if (TILES.containsKey(cacheKey)) return TILES.get(cacheKey);
         Bitmap logo = key == null ? null : ownLogo(c, key);
@@ -1041,8 +1041,20 @@ final class HomeApps {
         tile.setHasMipMap(true);
         TILES.put(cacheKey, tile);
         return tile;
-    }
+    }*/
+    private static synchronized Bitmap appTile(
+            Context c, String key, String pkg, int brand) {
 
+        Bitmap cached = TILES.get(pkg);
+        if (cached != null) {
+            return cached;
+        }
+
+        Bitmap iconCard = iconTile(c, pkg);
+        iconCard.setHasMipMap(true);
+        TILES.put(pkg, iconCard);
+        return iconCard;
+    }
     /** The app's official TV art (the Android TV banner), at the highest density the app has. */
     private static Bitmap bannerTile(Context c, String pkg) {
         PackageManager pm = c.getPackageManager();

@@ -26,7 +26,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Your own photos. A computer puts them in the app's external files folder (tools/photos.py: adb push to
- * Android/data/io.freemytv/files/photos, no permission needed) or, where adb can't reach it, through PhotoInbox; the
+ * Android/data/io.slimtvos/files/photos, no permission needed) or, where adb can't reach it, through PhotoInbox; the
  * next time the home screen, the screensaver or the settings open, each one is imported once into the app's private
  * folder, turned upright (EXIF), cropped to 16:9 and re-encoded at the screensaver's size (which also drops its GPS and
  * other tags), and the original is deleted. While they are on (Home Settings > My Photos), the screensaver shows them
