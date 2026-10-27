@@ -4,7 +4,7 @@ An Android Studio (Gradle) repackaging of https://github.com/simbasjungles/free-
 
 ## Preview
 
-![Free My TV home screen with the custom clock font](Screenshot_20261026_175754.png)
+![Free My TV home screen with the custom clock font](Screenshot.png)
 
 The clock uses the custom typeface `CSaurav.ttf`, located at `/assests/fonts/CSaurav.ttf`.
 
