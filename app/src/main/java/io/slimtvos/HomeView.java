@@ -1548,6 +1548,7 @@ final class HomeView extends ViewGroup implements Choreographer.FrameCallback, H
         String key = it.key + "@" + System.identityHashCode(src) + "@" + Math.round(tileRects[0].width()) + (rest ? "@rest" : "");
         Bitmap cached = crispLogos.get(key);
         if (cached != null) return cached;
+        if (crispLogos.size() > 24) crispLogos.clear();
         float bw = tileRects[0].width() * (1 + FOCUS_GROW), bh = tileRects[0].height() * (1 + FOCUS_GROW);
         float lw = src.getWidth(), lh = src.getHeight();
         float scale = (float) Math.sqrt(bw * bh * 0.085f / (lw * lh * Math.max(0.08f, it.logoInk))) * it.logoScale;
@@ -1854,9 +1855,23 @@ final class HomeView extends ViewGroup implements Choreographer.FrameCallback, H
             }
             c.drawBitmap(bitmap, left, top, null);
         }
+
+        void clear() {
+            if (bitmap != null && !bitmap.isRecycled()) {
+                bitmap.recycle();
+                bitmap = null;
+                key = "";
+            }
+        }
     }
 
     private final Snapshot weatherSnapshot = new Snapshot(), quotesSnapshot = new Snapshot();
+
+    void trimMemory() {
+        crispLogos.clear();
+        quotesSnapshot.clear();
+        weatherSnapshot.clear();
+    }
 
     private void drawPrices(Canvas c, RectF r) {
         float x = r.left + 34 * k, right = r.right - 34 * k;

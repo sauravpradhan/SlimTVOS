@@ -128,7 +128,10 @@ final class Photos {
      */
     static synchronized Backdrop backdrop(Context c, Runnable ready) {
         if (!on(c)) {
-            backdrop = null;
+            if (backdrop != null) {
+                backdrop.recycle();
+                backdrop = null;
+            }
             built = null;
             return null;
         }
@@ -147,6 +150,7 @@ final class Photos {
                 synchronized (Photos.class) {
                     building = null;
                     if (b == null) return;
+                    if (backdrop != null && backdrop != b) backdrop.recycle();
                     backdrop = b;
                     built = want;
                 }
@@ -154,6 +158,14 @@ final class Photos {
             });
         }
         return backdrop;
+    }
+
+    static synchronized void trimMemory() {
+        if (backdrop != null) {
+            backdrop.recycle();
+            backdrop = null;
+            built = null;
+        }
     }
 
     // MARK: - Importing what the computer sent

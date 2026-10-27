@@ -80,7 +80,12 @@ public class HomeActivity extends Activity {
 
     @Override public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-        if (level >= TRIM_MEMORY_COMPLETE) Recs.get(this).trim();
+        if (level >= TRIM_MEMORY_RUNNING_LOW) {
+            Recs.get(this).trim();
+            if (home != null) home.trimMemory();
+            Photos.trimMemory();
+            System.gc();
+        }
     }
 
     @Override public boolean dispatchKeyEvent(KeyEvent event) {

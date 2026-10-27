@@ -773,7 +773,11 @@ final class Recs {
             if (forLight != light) return;   // the design changed midway: this one is stale
             synchronized (images) {
                 images.put(p.backdrop, backdrop);
-                while (images.size() > (forLight ? 10 : 4)) images.remove(images.keySet().iterator().next());
+                while (images.size() > (forLight ? 10 : 4)) {
+                    String oldKey = images.keySet().iterator().next();
+                    Backdrop old = images.remove(oldKey);
+                    if (old != null) old.recycle();
+                }
             }
             notifyListeners();
         } catch (IOException | RuntimeException | OutOfMemoryError e) {
@@ -788,7 +792,14 @@ final class Recs {
         java.util.Set<String> keep = new java.util.HashSet<>();
         for (Pick p : now(null)) if (p.backdrop != null) keep.add(p.backdrop);
         synchronized (images) {
-            images.keySet().retainAll(keep);
+            java.util.Iterator<Map.Entry<String, Backdrop>> it = images.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<String, Backdrop> entry = it.next();
+                if (!keep.contains(entry.getKey())) {
+                    if (entry.getValue() != null) entry.getValue().recycle();
+                    it.remove();
+                }
+            }
         }
     }
 

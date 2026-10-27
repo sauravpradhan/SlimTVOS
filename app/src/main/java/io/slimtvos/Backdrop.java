@@ -305,4 +305,13 @@ final class Backdrop {
     private static int black(float a) {
         return Math.round(Math.max(0, Math.min(1, a)) * 255) << 24;
     }
+
+    /** Recycles all bitmap instances held by this backdrop to free native memory immediately. */
+    void recycle() {
+        if (image != null && !image.isRecycled()) image.recycle();
+        if (wide != null && !wide.isRecycled()) wide.recycle();
+        if (tall != null && !tall.isRecycled()) tall.recycle();
+        if (lightImage != null && !lightImage.isRecycled()) lightImage.recycle();
+        if (nightImage != null && !nightImage.isRecycled()) nightImage.recycle();
+    }
 }

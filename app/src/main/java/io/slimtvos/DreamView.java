@@ -99,6 +99,12 @@ final class DreamView extends View implements Choreographer.FrameCallback, HomeD
             this.inkTop = inkTop;
             this.inkHeight = inkHeight;
         }
+
+        void recycle() {
+            if (slope != null && !slope.isRecycled()) slope.recycle();
+            if (cover != null && !cover.isRecycled()) cover.recycle();
+            if (shadow != null && !shadow.isRecycled()) shadow.recycle();
+        }
     }
 
     private final Scene scene = new Scene(false);
@@ -674,8 +680,13 @@ final class DreamView extends View implements Choreographer.FrameCallback, HomeD
         worker.execute(() -> {
             Glass g = makeGlass(text, paint, right, top, scale);
             handler.post(() -> {
-                if (gen != generation || !text.equals(glassFor)) return;
+                if (gen != generation || !text.equals(glassFor)) {
+                    g.recycle();
+                    return;
+                }
+                Glass old = glass;
                 glass = g;
+                if (old != null && old != g) old.recycle();
                 glassShader.setInputShader("slope", nearest(g.slope));
                 glassShader.setInputShader("cover", nearest(g.cover));
                 chromeDirty = true;
