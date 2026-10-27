@@ -21,3 +21,5 @@ The clock uses the custom typeface `CSaurav.ttf`, located at `/assests/fonts/CSa
 adb connect <TV_IP>:5555
 adb install -r app-debug.apk
 adb shell "appops set io.freemytv AUTO_START allow || appops set io.freemytv APP_AUTO_START allow"
+
+Do not send apk directly and install, it will throw a play protect warning, instead try via adb.
